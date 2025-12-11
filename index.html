@@ -1,74 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Web</title>
+
 <style>
     body {
         margin: 0;
         padding: 0;
         background: #001f3f;
-        overflow: hidden;
-        text-align: center;
         color: white;
         font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        justify-content: space-between;
+        text-align: center;
+        overflow-x: hidden;
     }
 
-    /* Merry Christmas on top */
-    .title {
-        font-size: 40px;
-        font-weight: bold;
+    /* Merry Christmas */
+    h1 {
+        font-size: 38px;
+        margin-top: 30px;
         color: #ff4d4d;
-        margin-top: 10px;
-        animation: blink 1s infinite;
+        animation: blink 1.2s infinite;
     }
-
     @keyframes blink {
-        50% { opacity: 0; }
+        50% { opacity: 0.4; }
     }
 
-    /* Middle greeting text */
-    .greet {
-        font-size: 22px;
-        width: 90%;
-        margin: 0 auto;
-        white-space: nowrap;
+    /* Dòng chúc chạy ngang */
+    .msg-box {
+        margin-top: 40px;
+        width: 100%;
         overflow: hidden;
-        border-right: .1em solid #fff;
-        animation: typing 6s steps(40, end), blink-caret .75s step-end infinite;
+    }
+    .msg {
+        display: inline-block;
+        white-space: nowrap;
+        font-size: 20px;
+        animation: slide 12s linear infinite;
+    }
+    @keyframes slide {
+        0% { transform: translateX(120%); }
+        100% { transform: translateX(-120%); }
     }
 
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 90% }
-    }
-
-    @keyframes blink-caret {
-        50% { border-color: transparent; }
-    }
-
-    /* Bottom icon */
+    /* Icon lắc lư */
     .icon {
-        width: 180px;
-        margin-bottom: 20px;
+        width: 160px;
+        margin-top: 50px;
         animation: sway 2s infinite ease-in-out;
     }
-
     @keyframes sway {
         0% { transform: rotate(-8deg); }
         50% { transform: rotate(8deg); }
         100% { transform: rotate(-8deg); }
     }
 
-    /* Snowflakes */
-    .snowflake {
+    /* Tuyết rơi */
+    .snow {
         position: fixed;
         top: -10px;
-        font-size: 20px;
-        animation: fall linear infinite;
+        font-size: 18px;
         color: white;
+        animation: fall linear infinite;
+        pointer-events: none;
     }
     @keyframes fall {
         0% { transform: translateY(0); opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0.2; }
     }
 </style>
+</head>
+
+<body>
+
+<h1>Merry Christmas!</h1>
+
+<div class="msg-box">
+    <div class="msg">
+        🎁 Chúc chị Yến có 1 mùa giáng sinh ấm áp và sớm tăng lương cho bọn em nha!!! 🎉
+    </div>
+</div>
+
+<!-- icon tự upload -->
+<img src="your_icon.png" class="icon" />
+
+<!-- nhạc autoplay -->
+<audio autoplay loop>
+    <source src="christmas-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function snow() {
+    const s = document.createElement("div");
+    s.className = "snow";
+    s.textContent = "❄";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.animationDuration = (3 + Math.random()*4) + "s";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 7000);
+}
+setInterval(snow, 150);
+</script>
+
+</body>
+</html>
