@@ -85,13 +85,78 @@
     0% { left: -40vw; }
     100% { left: 110vw; }
 }
+  .merry-block {
+    margin-top: 20px;
+    text-align: center;
+    font-family: "Courier New", monospace;
+}
+
+.merry-line {
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.christmas-line {
+    margin-top: 5px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff4d4d;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tree {
+    font-size: 40px;
+}
+
+.letter {
+    display: inline-block;
+    animation: wobble 1s ease-in-out infinite;
+}
+
+@keyframes wobble {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(3deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}  
 </style>
 </head>
 
 <body>
 
-<h1>Merry Christmas!</h1>
+<div class="merry-block">
+    <div class="merry-line">
+        <span class="tree">🎄</span>
+        <span class="letter">M</span>
+        <span class="letter">E</span>
+        <span class="letter">R</span>
+        <span class="letter">R</span>
+        <span class="letter">Y</span>
+        <span class="tree">🎄</span>
+    </div>
 
+    <div class="christmas-line">
+        <span class="letter">C</span>
+        <span class="letter">H</span>
+        <span class="letter">R</span>
+        <span class="letter">I</span>
+        <span class="letter">S</span>
+        <span class="letter">T</span>
+        <span class="letter">M</span>
+        <span class="letter">A</span>
+        <span class="letter">S</span>
+        <span class="letter">!</span>
+        <span class="letter">!</span>
+        <span class="letter">!</span>
+    </div>
+</div>
 <div class="msg-box">
     <div class="msg">
         🎁 Chúc chị Sếp có một mùa Noel vui vẻ, ấm áp và sớm tăng lương cho bọn em nha!!! 🎉
