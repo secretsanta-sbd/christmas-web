@@ -1,0 +1,95 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Merry Christmas</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #00172E;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    /* Chữ nhấp nháy */
+    .blink {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ff3b3b;
+        animation: blink 1s infinite;
+        text-shadow: 0 0 20px red;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    /* Icon lắc lư */
+    .icon {
+        width: 180px;
+        margin-top: 20px;
+        animation: shake 2s infinite ease-in-out;
+    }
+
+    @keyframes shake {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(6deg); }
+        50% { transform: rotate(0deg); }
+        75% { transform: rotate(-6deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* Tuyết rơi */
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        font-size: 18px;
+        pointer-events: none;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10px); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="blink">🎄 Merry Christmas 🎄</div>
+
+<!-- Bạn thay link ảnh này bằng icon bạn muốn -->
+<img class="icon" src="your_icon.png" alt="icon">
+
+<script>
+    // Tạo tuyết rơi
+    function createSnow() {
+        const snow = document.createElement("div");
+        snow.classList.add("snowflake");
+        snow.innerHTML = "❄";
+
+        // Vị trí ngẫu nhiên
+        snow.style.left = Math.random() * window.innerWidth + "px";
+
+        // Thời gian rơi ngẫu nhiên
+        snow.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+        document.body.appendChild(snow);
+
+        // Xóa khi rơi xong
+        setTimeout(() => snow.remove(), 9000);
+    }
+
+    setInterval(createSnow, 150);
+</script>
+
+</body>
+</html><html></html>
