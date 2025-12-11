@@ -86,7 +86,7 @@
     100% { left: 110vw; }
 }
   .merry-block {
-    margin-top: 20px;
+    margin-top: 40px;
     text-align: center;
     font-family: "Courier New", monospace;
 }
@@ -116,7 +116,9 @@
 
 .letter {
     display: inline-block;
-    animation: wobble 1s ease-in-out infinite;
+    animation: 
+        wobble 1s ease-in-out infinite,
+        blink 1.2s ease-in-out infinite;
 }
 
 @keyframes wobble {
@@ -125,7 +127,11 @@
     50%  { transform: rotate(0deg); }
     75%  { transform: rotate(-3deg); }
     100% { transform: rotate(0deg); }
-}  
+} 
+   @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+} 
 </style>
 </head>
 
