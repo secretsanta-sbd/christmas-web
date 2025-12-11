@@ -1,60 +1,62 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8" />
-<title>Merry Christmas</title>
-
 <style>
     body {
         margin: 0;
         padding: 0;
         background: #001f3f;
+        overflow: hidden;
+        text-align: center;
         color: white;
         font-family: Arial, sans-serif;
-        overflow-x: hidden;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
     }
 
-    /* Merry Christmas top */
+    /* Merry Christmas on top */
     .title {
-        font-size: 42px;
+        font-size: 40px;
         font-weight: bold;
-        margin-top: 20px;
         color: #ff4d4d;
-        animation: glow 1.5s infinite;
-    }
-    @keyframes glow {
-        50% { opacity: 0.4; }
+        margin-top: 10px;
+        animation: blink 1s infinite;
     }
 
-    /* Text typing left→right */
-    .typing {
-        width: 100%;
-        font-size: 26px;
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+
+    /* Middle greeting text */
+    .greet {
+        font-size: 22px;
+        width: 90%;
+        margin: 0 auto;
         white-space: nowrap;
         overflow: hidden;
-        border-right: 2px solid white;
-        margin-top: 40px;
-        animation: typing 6s steps(60), blink 0.75s step-end infinite;
+        border-right: .1em solid #fff;
+        animation: typing 6s steps(40, end), blink-caret .75s step-end infinite;
     }
+
     @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
+        from { width: 0 }
+        to { width: 90% }
     }
-    @keyframes blink {
+
+    @keyframes blink-caret {
         50% { border-color: transparent; }
     }
 
-    /* Icon sway */
-    .sway {
-        width: 160px;
-        margin-top: 50px;
+    /* Bottom icon */
+    .icon {
+        width: 180px;
+        margin-bottom: 20px;
         animation: sway 2s infinite ease-in-out;
     }
+
     @keyframes sway {
-        0% { transform: rotate(-10deg); }
-        50% { transform: rotate(10deg); }
-        100% { transform: rotate(-10deg); }
+        0% { transform: rotate(-8deg); }
+        50% { transform: rotate(8deg); }
+        100% { transform: rotate(-8deg); }
     }
 
     /* Snowflakes */
@@ -62,51 +64,11 @@
         position: fixed;
         top: -10px;
         font-size: 20px;
-        color: white;
         animation: fall linear infinite;
-        pointer-events: none;
+        color: white;
     }
     @keyframes fall {
         0% { transform: translateY(0); opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0.2; }
     }
 </style>
-</head>
-
-<body>
-
-<div class="title">🎄 Merry Christmas 🎄</div>
-
-<div class="typing">
-    Chúc chị Yến có 1 mùa giáng sinh ấm áp và sớm tăng lương cho bọn em nha!!!
-</div>
-
-<img src="your_icon.png" class="sway">
-
-<!-- Music -->
-<audio id="bgm" loop>
-    <source src="https://files.catbox.moe/4n3m9i.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-/* Snow */
-function createSnowflake() {
-    const snow = document.createElement("div");
-    snow.classList.add("snowflake");
-    snow.textContent = "❄";
-    snow.style.left = Math.random() * window.innerWidth + "px";
-    snow.style.animationDuration = 3 + Math.random() * 5 + "s";
-    document.body.appendChild(snow);
-    setTimeout(() => snow.remove(), 8000);
-}
-setInterval(createSnowflake, 150);
-
-/* Autoplay fix for mobile */
-document.addEventListener("click", () => {
-    const audio = document.getElementById("bgm");
-    if (audio.paused) audio.play();
-}, { once: true });
-</script>
-
-</body>
-</html>
