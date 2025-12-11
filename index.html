@@ -1,95 +1,115 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merry Christmas</title>
+
 <style>
     body {
         margin: 0;
-        height: 100vh;
-        background: #00172E;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
+        padding: 0;
+        background: #001f3f;
+        overflow-x: hidden;
+        text-align: center;
         color: white;
+        font-family: Arial, sans-serif;
     }
 
-    /* Chữ nhấp nháy */
+    /* Blinking text */
     .blink {
-        font-size: 48px;
+        font-size: 36px;
         font-weight: bold;
-        color: #ff3b3b;
+        color: #ff4d4d;
         animation: blink 1s infinite;
-        text-shadow: 0 0 20px red;
+        margin-top: 30px;
+        padding: 0 10px;
     }
-
     @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
+        50% { opacity: 0; }
     }
 
-    /* Icon lắc lư */
-    .icon {
-        width: 180px;
-        margin-top: 20px;
-        animation: shake 2s infinite ease-in-out;
+    /* Sway animation for icon */
+    .sway {
+        width: 120px;
+        margin-top: 30px;
+        animation: sway 2s infinite ease-in-out;
+    }
+    @keyframes sway {
+        0% { transform: rotate(-10deg); }
+        50% { transform: rotate(10deg); }
+        100% { transform: rotate(-10deg); }
     }
 
-    @keyframes shake {
-        0% { transform: rotate(0deg); }
-        25% { transform: rotate(6deg); }
-        50% { transform: rotate(0deg); }
-        75% { transform: rotate(-6deg); }
-        100% { transform: rotate(0deg); }
-    }
-
-    /* Tuyết rơi */
+    /* Snow */
     .snowflake {
         position: fixed;
         top: -10px;
-        color: white;
-        font-size: 18px;
-        pointer-events: none;
+        font-size: 20px;
         animation: fall linear infinite;
+        color: white;
+        pointer-events: none;
+        z-index: 10;
+    }
+    @keyframes fall {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0.2; }
     }
 
-    @keyframes fall {
-        0% { transform: translateY(-10px); opacity: 1; }
-        100% { transform: translateY(110vh); opacity: 0; }
+    /* Typewriter text */
+    .typewriter {
+        margin-top: 25px;
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        border-right: 2px solid white;
+        animation: typing 6s steps(60, end) forwards, cursor 0.7s infinite;
+    }
+
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes cursor {
+        50% { border-color: transparent; }
     }
 </style>
 </head>
 <body>
 
+<!-- Music autoplay -->
+<audio autoplay loop>
+    <source src="https://files.catbox.moe/6n5c0v.mp3" type="audio/mpeg">
+</audio>
+
 <div class="blink">🎄 Merry Christmas 🎄</div>
 
-<!-- Bạn thay link ảnh này bằng icon bạn muốn -->
-<img class="icon" src="your_icon.png" alt="icon">
+<!-- Image (you can replace URL bằng icon của bạn) -->
+<img src="https://i.imgur.com/8Km9tLL.png" class="sway" />
+
+<!-- Typewriter greeting -->
+<div class="typewriter">
+Chúc chị Yến có 1 mùa giáng sinh ấm áp và sớm tăng lương cho bọn em nha!!!
+</div>
 
 <script>
-    // Tạo tuyết rơi
-    function createSnow() {
-        const snow = document.createElement("div");
-        snow.classList.add("snowflake");
-        snow.innerHTML = "❄";
+function createSnowflake() {
+    const snow = document.createElement("div");
+    snow.classList.add("snowflake");
+    snow.textContent = "❄";
 
-        // Vị trí ngẫu nhiên
-        snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.animationDuration = 3 + Math.random() * 5 + "s";
 
-        // Thời gian rơi ngẫu nhiên
-        snow.style.animationDuration = (4 + Math.random() * 5) + "s";
+    document.body.appendChild(snow);
 
-        document.body.appendChild(snow);
+    setTimeout(() => snow.remove(), 8000);
+}
 
-        // Xóa khi rơi xong
-        setTimeout(() => snow.remove(), 9000);
-    }
-
-    setInterval(createSnow, 150);
+setInterval(createSnowflake, 150);
 </script>
 
 </body>
-</html><html></html>
+</html>
