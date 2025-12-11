@@ -1,74 +1,88 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Christmas Web</title>
+<title>Christmas Greetings</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #001f3f;
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        overflow-x: hidden;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #001f3f;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
 
-    /* Merry Christmas */
-    h1 {
-        font-size: 38px;
-        margin-top: 30px;
-        color: #ff4d4d;
-        animation: blink 1.2s infinite;
-    }
-    @keyframes blink {
-        50% { opacity: 0.4; }
-    }
+  /* Merry Christmas text */
+  h1 {
+    font-size: 10vw;
+    margin: 20px 0 10px 0;
+    color: #ff3333;
+    animation: blink 1.2s infinite ease-in-out;
+  }
+  @keyframes blink {
+    50% { opacity: 0.4; }
+  }
 
-    /* Dòng chúc chạy ngang */
-    .msg-box {
-        margin-top: 40px;
-        width: 100%;
-        overflow: hidden;
-    }
-    .msg {
-        display: inline-block;
-        white-space: nowrap;
-        font-size: 20px;
-        animation: slide 12s linear infinite;
-    }
-    @keyframes slide {
-        0% { transform: translateX(120%); }
-        100% { transform: translateX(-120%); }
-    }
+  /* Running message */
+  #message {
+    font-size: 5vw;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+  }
+  #message span {
+    position: absolute;
+    animation: slide 12s linear infinite;
+  }
+  @keyframes slide {
+    0% { left: 110%; }
+    100% { left: -120%; }
+  }
 
-    /* Icon lắc lư */
-    .icon {
-        width: 160px;
-        margin-top: 50px;
-        animation: sway 2s infinite ease-in-out;
-    }
-    @keyframes sway {
-        0% { transform: rotate(-8deg); }
-        50% { transform: rotate(8deg); }
-        100% { transform: rotate(-8deg); }
-    }
+  /* Icon sway */
+  .icon {
+    width: 28vw;
+    margin-top: 25px;
+    animation: sway 2.5s infinite ease-in-out;
+  }
+  @keyframes sway {
+    0% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+    100% { transform: rotate(-8deg); }
+  }
 
-    /* Tuyết rơi */
-    .snow {
-        position: fixed;
-        top: -10px;
-        font-size: 18px;
-        color: white;
-        animation: fall linear infinite;
-        pointer-events: none;
-    }
-    @keyframes fall {
-        0% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(110vh); opacity: 0.2; }
-    }
+  /* Snow effect */
+  .snowflake {
+    position: fixed;
+    top: -10px;
+    font-size: 18px;
+    color: white;
+    animation: fall linear infinite;
+    pointer-events: none;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0); opacity:1; }
+    100% { transform: translateY(110vh); opacity:0.2; }
+  }
+
+  /* Reindeer running */
+  #reindeer {
+    position: fixed;
+    bottom: 10px;
+    left: -40vw;
+    width: 35vw;
+    animation: runReindeer 8s linear infinite;
+  }
+  @keyframes runReindeer {
+    0% { left: -40vw; }
+    100% { left: 110vw; }
+  }
 </style>
 </head>
 
@@ -76,31 +90,33 @@
 
 <h1>Merry Christmas!</h1>
 
-<div class="msg-box">
-    <div class="msg">
-        🎁 Chúc chị Yến có 1 mùa giáng sinh ấm áp và sớm tăng lương cho bọn em nha!!! 🎉
-    </div>
+<div id="message">
+  <span>🎁 Chúc chị Yến có 1 mùa giáng sinh ấm áp và sớm tăng lương cho bọn em nha!!! 🎉</span>
 </div>
 
-<!-- icon tự upload -->
 <img src="your_icon.png" class="icon" />
 
-<!-- nhạc autoplay -->
+<!-- Reindeer animation -->
+<img id="reindeer" src="reindeer.png">
+
+<!-- Music -->
 <audio autoplay loop>
-    <source src="christmas-music.mp3" type="audio/mpeg">
+  <source src="christmas-music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function snow() {
-    const s = document.createElement("div");
-    s.className = "snow";
-    s.textContent = "❄";
-    s.style.left = Math.random() * window.innerWidth + "px";
-    s.style.animationDuration = (3 + Math.random()*4) + "s";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 7000);
+/* Snow generator */
+function createSnow() {
+  const s = document.createElement("div");
+  s.className = "snowflake";
+  s.textContent = "❄";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.fontSize = (10 + Math.random() * 20) + "px";
+  s.style.animationDuration = (3 + Math.random() * 5) + "s";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 9000);
 }
-setInterval(snow, 150);
+setInterval(createSnow, 140);
 </script>
 
 </body>
