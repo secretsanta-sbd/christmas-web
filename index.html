@@ -99,9 +99,17 @@
 <img src="your_icon.png" class="icon" />
 
 <!-- nhạc autoplay -->
-<audio autoplay loop>
-    <source src="christmas-music.mp3" type="audio/mpeg">
+<audio id="bgmusic" autoplay loop muted>
+  <source src="christmas-music.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+document.addEventListener("click", function () {
+    const music = document.getElementById("bgmusic");
+    music.muted = false;
+    music.play();
+}, { once: true });
+</script>
 
 <script>
 function snow() {
