@@ -69,6 +69,19 @@
         0% { transform: translateY(0); opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0.2; }
     }
+    /* Reindeer sleigh chạy ngang */
+.reindeer {
+    position: fixed;
+    bottom: 5vh; /* nằm sát dưới nhưng không che icon */
+    left: -300px;  /* bắt đầu ngoài màn hình */
+    width: 30vw;   /* tự co theo màn hình */
+    animation: ride 10s linear infinite;
+}
+
+@keyframes ride {
+    0% { left: -40vw; }
+    100% { left: 110vw; }
+}
 </style>
 </head>
 
@@ -102,6 +115,7 @@ function snow() {
 }
 setInterval(snow, 150);
 </script>
+<img src="reindeer.png" class="reindeer" />
 
 </body>
 </html>
