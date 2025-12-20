@@ -223,7 +223,7 @@ setInterval(snow, 150);
 </script>
 <img src="reindeer.png" class="reindeer" />
 <div class="signature" id="signature">
-    - Ký tên ________ -
+    - Ký tên SBDsanta -
 </div> 
 
     <script>
@@ -237,9 +237,8 @@ window.addEventListener("load", () => {
         span.className = "sig-letter";
         span.textContent = char;
 
-        span.style.animation = `drop 0.8s ease-out forwards`;
-        span.style.animationDelay = (Math.random() * 0.8) + "s";
-
+        span.style.animation = `drop 1.8s cubic-bezier(.2,.8,.3,1) forwards`;
+span.style.animationDelay = (Math.random() * 1.2) + "s";
         sig.appendChild(span);
     });
 });
