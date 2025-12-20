@@ -143,6 +143,39 @@
     color: #ffffffcc;
     letter-spacing: 2px;
     pointer-events: none;  /* không ảnh hưởng click */
+} 
+.signature {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Courier New", monospace;
+    color: #ffffffcc;
+    letter-spacing: 2px;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.sig-letter {
+    position: absolute;
+    opacity: 0;
+    animation: drop 1s ease-out forwards;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }    
 </style>
 </head>
@@ -206,8 +239,47 @@ function snow() {
 setInterval(snow, 150);
 </script>
 <img src="reindeer.png" class="reindeer" />
-<div class="signature">
+<div class="signature" id="signature">
     - Ký tên ________ -
-</div>    
+</div> 
+  <script>
+window.addEventListener("load", () => {
+    const sig = document.getElementById("signature");
+    const text = sig.textContent;
+    sig.textContent = "";
+
+    const rect = sig.getBoundingClientRect();
+    let xOffset = 0;
+
+    [...text].forEach((char, i) => {
+        const span = document.createElement("span");
+        span.className = "sig-letter";
+        span.textContent = char;
+
+        const randomX = Math.random() * window.innerWidth;
+        span.style.left = randomX + "px";
+        span.style.top = "-50px";
+
+        span.style.animationDelay = (Math.random() * 0.8) + "s";
+
+        document.body.appendChild(span);
+
+        // Sau khi rơi xong → đưa về đúng vị trí
+        setTimeout(() => {
+            span.style.transition = "all 0.5s ease";
+            span.style.left = (rect.left + xOffset) + "px";
+            span.style.top = rect.top + "px";
+        }, 1000);
+
+        // Tính vị trí chữ tiếp theo
+        const temp = document.createElement("span");
+        temp.style.visibility = "hidden";
+        temp.textContent = char;
+        sig.appendChild(temp);
+        xOffset += temp.offsetWidth;
+        sig.removeChild(temp);
+    });
+});
+</script>  
 </body>
 </html>
