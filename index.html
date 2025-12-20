@@ -143,7 +143,7 @@
     font-size: 16px;
     font-weight: 700;     /* 👈 IN ĐẬM */
     /*font-style: italic; */ /* 👈 IN NGHIÊNG */
-    letter-spacing: -0.8px;
+    letter-spacing: -1px;
     color: #ffffffcc;
     white-space: nowrap;
 }
@@ -151,8 +151,14 @@
 .signature-css span {
     display: inline-block;
     opacity: 0;
-    animation: dropBounce 2.7s cubic-bezier(.2,.8,.3,1) forwards;
-    animation-delay: var(--d);
+    animation:
+        dropBounce 2.7s cubic-bezier(.2,.8,.3,1) forwards,
+        idleWave 4s ease-in-out infinite,
+        softBlink 3s ease-in-out infinite;
+    animation-delay:
+        var(--d),
+        calc(var(--d) + 2.7s),
+        calc(var(--d) + 2.7s);
     transform-origin: center bottom;
 }
 
@@ -174,6 +180,14 @@
     100% {
         transform: translateY(0) rotate(0deg) scaleY(1);
         opacity: 1;
+    }
+}  
+ @keyframes softBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.75;
     }
 }   
 </style>
